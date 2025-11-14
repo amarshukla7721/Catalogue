@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prabha Graphics - Corporate & Personalized Gifting</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+
+    <style>
+        /* --- Global Styles & Variables --- */
+        :root {
+            --primary-red: #D10007;
+            --dark-text: #1a1a1a;
+            --light-text: #ffffff;
+            --grey-bg: #f4f4f4;
+            --font-main: 'Inter', 'Brandon Grotesque Medium', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--dark-text);
+        }
+
+        section {
+            padding: 60px 20px;
+            overflow: hidden; /* Important for AOS animations */
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            background: var(--light-text);
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.1rem;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1300px;
+            padding: 0 20px;
+        }
+
+        .navbar-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-text);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin: 0 15px;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        /* Underline animation */
+        .nav-item a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            color: var(--primary-red);
+        }
+
+        .nav-item a:hover::after {
+            width: 100%;
+        }
+
+        .nav-button {
+            padding: 10px 22px;
+            font-size: 1rem;
+            font-weight: 500;
+            background: var(--primary-red);
+            color: var(--light-text);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: #a70006;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(209, 0, 7, 0.4);
+        }
+
+        /* --- Hero Section & Swiper --- */
+        .hero {
+            height: 90vh;
+            padding: 0;
+        }
+        
+        .hero .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--light-text);
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Placeholder backgrounds - REPLACE THESE */
+        .slide-1 { background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=1200'); background-size: cover; }
+        .slide-2 { background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1595269410878-52b31495499f?w=1200'); background-size: cover; }
+        .slide-3 { background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1586770868853-356c919c00b0?w=1200'); background-size: cover; }
+
+        .hero-content {
+            /* Animation for text */
+            animation: fadeInDown 1.5s ease;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .hero-content h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+        }
+
+        /* Custom Swiper pagination */
+        .swiper-pagination-bullet-active {
+            background: var(--primary-red) !important;
+        }
+
+        /* Custom Swiper navigation */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--primary-red) !important;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Categories Section --- */
+        .categories {
+            background: var(--grey-bg);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: var(--light-text);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            text-align: center;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Card hover animation */
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .category-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-red);
+            margin-bottom: 10px;
+        }
+
+        /* --- Why Us Section --- */
+        .why-us {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .why-us-content {
+            flex: 1;
+        }
+
+        .why-us-content .section-title {
+            text-align: left;
+        }
+
+        .why-us-content ul {
+            list-style: none;
+        }
+
+        .why-us-content li {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .why-us-content li::before {
+            content: '✔';
+            color: var(--primary-red);
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+
+        .why-us-image {
+            flex: 1;
+            height: 400px;
+            background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=1200'); /* Placeholder */
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+        }
+
+        /* --- Featured Products Section --- */
+        .featured-products {
+            background: var(--light-text);
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .product-swiper {
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        .product-slide {
+            background: var(--grey-bg);
+            height: 250px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: grab;
+            /* Add placeholder images here as backgrounds */
+        }
+
+        .product-slide:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-slide h3 {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 5px;
+        }
+
+        /* --- CTA Section --- */
+        .cta {
+            background: var(--primary-red);
+            color: var(--light-text);
+            text-align: center;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: var(--light-text);
+            color: var(--primary-red);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite; /* Pulse animation */
+        }
+
+        .cta-button:hover {
+            background: var(--grey-bg);
+            transform: scale(1.05);
+            animation: none; /* Stop pulse on hover */
+        }
+
+        /* Pulse animation for CTA button */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background: var(--dark-text);
+            color: var(--light-text);
+            padding: 50px 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1300px;
+            margin: 0 auto;
+            gap: 30px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.4rem;
+            color: var(--primary-red);
+            margin-bottom: 20px;
+        }
+
+        .footer-col p {
+            color: #ccc;
+            line-height: 1.7;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            text-decoration: none;
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #888;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none; /* Simple hiding for demo. A real app would use a hamburger menu */
+            }
+
+            .why-us {
+                flex-direction: column;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .hero-content h2 {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">Prabha Graphics</div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home">Home</a></li>
+                <li class="nav-item"><a href="#about">About Us</a></li>
+                <li class="nav-item"><a href="#corporate">Corporate Gifts</a></li>
+                <li class="nav-item"><a href="#personal">Personalized Gifts</a></li>
+                <li class="nav-item"><a href="#contact">Contact Us</a></li>
+            </ul>
+            <button class="nav-button">Get a Quote</button>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="swiper hero-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide hero-slide slide-1">
+                    <div class="hero-content">
+                        <h1>MAKE HAPPEN!</h1>
+                        <h2>Your Brand. Your Message. Our Expertise.</h2>
+                    </div>
+                </div>
+                <div class="swiper-slide hero-slide slide-2">
+                    <div class="hero-content">
+                        <h1>Custom Printed Mugs</h1>
+                        <h2>Create Lasting Memories with Every Sip.</h2>
+                    </div>
+                </div>
+                <div class="swiper-slide hero-slide slide-3">
+                    <div class="hero-content">
+                        <h1>Promotional Products</h1>
+                        <h2>The Best Budget Marketing Tool.</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <section id="categories" class="categories">
+        <h2 class="section-title" data-aos="fade-up">Our Product Universe</h2>
+        <div class="category-grid">
+            <div class="category-card" data-aos="fade-up" data-aos-delay="100">
+                <h3>Custom Apparel</h3>
+                <p>Polo T-Shirts, Round Necks, and more.</p>
+            </div>
+            <div class="category-card" data-aos="fade-up" data-aos-delay="200">
+                <h3>Corporate & Promotional</h3>
+                <p>Keychains, Pens, Paperweights, and Clocks.</p>
+            </div>
+            <div class="category-card" data-aos="fade-up" data-aos-delay="300">
+                <h3>Personalized Gifts</h3>
+                <p>Mugs, Cushions, Frames, and Magic Mirrors.</p>
+            </div>
+            <div class="category-card" data-aos="fade-up" data-aos-delay="400">
+                <h3>Business Essentials</h3>
+                <p>Visiting Cards, Letterheads, and Combo Packs.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="why-us">
+        <div class="why-us-content" data-aos="fade-right">
+            <h2 class="section-title">Build Your Brand, Create Connections.</h2>
+            <ul>
+                <li><strong>Unique Identity:</strong> Create a unique identity for your company or event.</li>
+                <li><strong>Budget Marketing:</strong> The best marketing tool to connect with customers.</li>
+                <li><strong>Lasting Memories:</strong> Personalized gifts that show you care.</li>
+            </ul>
+        </div>
+        <div class="why-us-image" data-aos="fade-left">
+            </div>
+    </section>
+
+    <section id="corporate" class="featured-products">
+        <h2 class="section-title" data-aos="fade-up">Our Most Popular Items</h2>
+        
+        <div class="swiper product-swiper" data-aos="fade-up" data-aos-delay="200">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide product-slide"><h3>Temperature Bottle</h3></div>
+                <div class="swiper-slide product-slide"><h3>Magic Mirror</h3></div>
+                <div class="swiper-slide product-slide"><h3>Rotating Lamp</h3></div>
+                <div class="swiper-slide product-slide"><h3>Corporate Combo Pack</h3></div>
+                <div class="swiper-slide product-slide"><h3>Customized Clock</h3></div>
+                <div class="swiper-slide product-slide"><h3>LED Cushion</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="cta">
+        <div class="cta-content" data-aos="zoom-in">
+            <h2>Ready to Make Your Brand Happen?</h2>
+            <p>Contact us today for bulk orders, custom designs, and FREE printing on light-colored T-shirts!</p>
+            <button class="cta-button">Get Your Free Quote Now</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Prabha Graphics</h3>
+                <p>Your trusted partner in Lucknow for all corporate and personalized printing and gifting needs.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#corporate">T-Shirts</a></li>
+                    <li><a href="#personal">Mugs</a></li>
+                    <li><a href="#corporate">Keychains</a></li>
+                    <li><a href="#personal">Custom Gifts</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p><strong>Phone:</strong> 074579 94888</p>
+                <p><strong>Address:</strong> Shop No. 4/74, Adarsh Market, Gomti Nagar, Lucknow, UP 226010</p>
+                <p><strong>Website:</strong> www.prabhagraphics.in</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Prabha Graphics. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        // 1. Initialize AOS (Animate on Scroll)
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
+        // 2. Initialize Hero Swiper
+        // The bundle (swiper-bundle.min.js) includes all modules.
+        // We just need to configure them.
+        new Swiper('.hero-swiper', {
+            spaceBetween: 0,
+            slidesPerView: 1,
+            // Enable Navigation module
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            // Enable Pagination module
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            // Enable Autoplay module
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false
+            },
+            loop: true,
+        });
+
+        // 3. Initialize Featured Products Swiper
+        new Swiper('.product-swiper', {
+            spaceBetween: 30,
+            slidesPerView: 4,
+            // Enable Autoplay module
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false
+            },
+            loop: true,
+            // Responsive Breakpoints
+            breakpoints: {
+                320: { slidesPerView: 1, spaceBetween: 10 },
+                640: { slidesPerView: 2, spaceBetween: 20 },
+                1024: { slidesPerView: 4, spaceBetween: 30 },
+            }
+        });
+    </script>
+
+</body>
+</html>
